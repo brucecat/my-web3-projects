@@ -1,7 +1,7 @@
 <script setup>
 import useWeb3 from "@/hooks/useWeb3";
 import { ref, onMounted } from "vue";
-// import aaa from "my-contracts/lib/MyToken/MyToken.json";
+// import aaa from "my-contracts/contracts/MyToken/MyToken.json";
 
 const { web3, voteContract, getAccount } = useWeb3();
 

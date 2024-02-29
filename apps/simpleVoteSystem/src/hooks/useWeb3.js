@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import VoteJSON from "my-contracts/lib/SimpleVoteSystem/Vote.json";
+import VoteJSON from "my-contracts/contracts/SimpleVoteSystem/Vote.json";
 
 const useWeb3 = () => {
   const web3 = new Web3(
