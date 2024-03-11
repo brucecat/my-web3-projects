@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: -webkit-fill-available;
+  height: 100%;
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 text-white bg-black rounded-3xl;
+  }
+
+  .input {
+    @apply px-4 py-2 border-2 border-gray-300 rounded-3xl;
+  }
+}
+
+.simplebar-mask {
+  border-radius: 0.5rem /* 8px */;
+}
+
+@media (min-width: 768px) {
+  .simplebar-mask {
+    border-radius: 1.8rem /* 24px */;
+    border: 2px solid #e5e7eb;
+  }
+}
