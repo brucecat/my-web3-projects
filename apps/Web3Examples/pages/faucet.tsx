@@ -9,7 +9,8 @@ import {
 } from "wagmi";
 import { Alert, Button, Heading, Input, useToast } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import { abi } from "@/abi/Faucet.json";
+// import { abi } from "@/abi/Faucet.json";
+import { abi } from "my-contracts/build/Faucet.json"
 
 const contract = {
   address: process.env.NEXT_PUBLIC_FAUCET_CONTRACT_ADDRESS as `0x${string}`,

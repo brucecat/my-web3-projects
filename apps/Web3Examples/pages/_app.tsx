@@ -32,7 +32,7 @@ export default function App({
           <ChakraProvider>
             <SWRConfig value={options}>
               <ILayout useWallet={(Component as any).useWallet}>
-                <GTag />
+                {/* <GTag /> */}
                 <Component {...pageProps} />
               </ILayout>
             </SWRConfig>

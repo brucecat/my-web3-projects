@@ -29,7 +29,8 @@ import {
 } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
 import { useAccount, useContract, useSigner } from "wagmi";
-import { abi } from "@/abi/NoahNFT.json";
+// import { abi } from "@/abi/NoahNFT.json";
+import NoahNFTContract from "my-contracts/build/NoahNFT.json"
 import { Formik, Field, FieldArray } from "formik";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
@@ -45,6 +46,7 @@ const eventBus = new EventEmitter();
 const events = {
   NFT_CREATED: "NFT_CREATED",
 };
+const { abi } = NoahNFTContract
 
 const noahNFTcontract = {
   address: process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS as string,
@@ -900,9 +902,8 @@ function UploadImage({ onUpload }: { onUpload: (data: any) => void }) {
 
       {file && (
         <div
-          className={`${
-            !isLoading ? "bg-gray-50" : "bg-gray-400"
-          } flex justify-between items-center py-2 px-4`}
+          className={`${!isLoading ? "bg-gray-50" : "bg-gray-400"
+            } flex justify-between items-center py-2 px-4`}
         >
           <Image
             src={URL.createObjectURL(file)}

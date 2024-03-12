@@ -6,18 +6,22 @@ import {
   useContractRead,
   useContractReads,
   useContractEvent,
+  useAccount,
 } from "wagmi";
 import {
   Alert,
   Button,
+  Divider,
   Heading,
   Input,
   Spinner,
   useToast,
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import { abi } from "@/abi/NoahToken.json";
+// import { abi } from "@/abi/NoahToken.json";
+import NoahTokenContract from "my-contracts/build/NoahToken.json"
 
+const { abi } = NoahTokenContract
 const contract = {
   address: process.env.NEXT_PUBLIC_TOKEN_CONTRACT_ADDRESS as `0x${string}`,
   abi,
@@ -65,6 +69,17 @@ function Detail() {
 
   const [name, symbol, decimals, totalSupply] = data || [];
 
+  const account = useAccount()
+  console.log('account: ', account);
+  const { address = '' } = account ?? {}
+  const { data: curUserBalance, isLoading: isUserBalanceLoading } = useContractRead({
+    ...contract,
+    functionName: "balanceOf",
+    args: [address],
+    enabled: address !== "",
+  })
+  console.log('curUserBalance: ', curUserBalance);
+
   return (
     <div>
       <Heading>代币信息</Heading>
@@ -76,6 +91,9 @@ function Detail() {
           <div>代币代号：{symbol && symbol?.toString()}</div>
           <div>代币精度：{decimals && decimals?.toString()}</div>
           <div>代币总量：{totalSupply && totalSupply?.toString()}</div>
+          <Divider></Divider>
+          <div>当前账户：{account && account.address}</div>
+          <div>当前账户余额：{!isUserBalanceLoading && curUserBalance?.toString()}</div>
         </>
       )}
       {isError ? (
@@ -258,9 +276,8 @@ function Approve() {
       </Button>
 
       {isWriteError || isTransactionError ? (
-        <Alert status="error">{`授权失败，失败原因：${
-          writeError || transactionError
-        }`}</Alert>
+        <Alert status="error">{`授权失败，失败原因：${writeError || transactionError
+          }`}</Alert>
       ) : null}
     </div>
   );
@@ -376,9 +393,8 @@ function TransferFrom() {
       </Button>
 
       {isWriteError || isTransactionError ? (
-        <Alert status="error">{`授权失败，失败原因：${
-          writeError || transactionError
-        }`}</Alert>
+        <Alert status="error">{`授权失败，失败原因：${writeError || transactionError
+          }`}</Alert>
       ) : null}
     </div>
   );

@@ -48,7 +48,8 @@
     "typescript": "4.9.4",
     "vivus": "^0.4.6",
     "wagmi": "^0.10.4",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "my-contracts": "workspace:^"
   },
   "devDependencies": {
     "@types/formidable": "^2.0.5",
